@@ -1,0 +1,251 @@
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* General Reset & Base Styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #222;
+  background-color: #fdfdfd;
+}
+
+#wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #003366;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #003366;
+  color: white;
+  border-radius: 8px;
+}
+
+.siteName a {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.siteName a:hover {
+  text-decoration: underline;
+  color: #ffcc00;
+}
+
+#tools a {
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+#tools a:hover {
+  background-color: white;
+  color: #003366;
+  transition: all 0.3s ease;
+}
+
+.account-link {
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #003366;
+}
+
+/* Navigation */
+nav {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  background-color: #003366;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: #ffcc00;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #e6f0ff;
+  border-radius: 10px;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+#hero-text {
+  max-width: 500px;
+  text-align: left;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #003366;
+}
+
+#hero-text ul {
+  list-style: none;
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.hero-image {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #003366;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta-button:hover {
+  background-color: #00509e;
+  transition: background-color 0.3s ease;
+}
+
+/* Upgrades & Reviews Section */
+.upgrades-reviews {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+/* Upgrades */
+.upgrades {
+  background-color: #f0f8ff;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.upgrades h2 {
+  margin-top: 0;
+  color: #003366;
+}
+
+.upgrade-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.upgrade-list div {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.upgrade-list img {
+  max-width: 80px;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+}
+
+.upgrade-list a {
+  color: #003366;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Reviews */
+.reviews {
+  background-color: #f0f8ff;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.reviews h2 {
+  color: #003366;
+}
+
+.reviews li {
+  margin-bottom: 0.8rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .hero-image {
+    max-width: 400px;
+  }
+
+  .upgrades-reviews {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .upgrades, .reviews {
+    width: 48%;
+  }
+}
