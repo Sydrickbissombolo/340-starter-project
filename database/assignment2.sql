@@ -32,5 +32,5 @@ WHERE c.classification_name = 'Sport';
 
 -- Update file paths for images and thumbnails
 UPDATE inventory
-SET inv_image = REPLACE(inv_image, 'images/', '/images/vehicles/'),
-    inv_thumbnail = REPLACE(inv_thumbnail, 'images/', '/images/vehicles/');
+SET inv_image = REPLACE(inv_image, 'images', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, 'images', '/images/vehicles/');

@@ -246,6 +246,5 @@ WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 -- Update file paths for images and thumbnails
 UPDATE inventory
-SET inv_image = REPLACE(inv_image, 'images/', '/images/vehicles/'),
-    inv_thumbnail = REPLACE(inv_thumbnail, 'images/', '/images/vehicles/');
-
+SET inv_image = REPLACE(inv_image, 'images', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, 'images', '/images/vehicles/');

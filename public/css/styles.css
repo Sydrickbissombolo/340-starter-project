@@ -249,3 +249,121 @@ footer {
     width: 48%;
   }
 }
+
+/* ================================
+   Inventory Classification View
+   ================================ */
+
+/* Container for inventory display */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Each vehicle card */
+#inv-display li {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+#inv-display li:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Vehicle image */
+#inv-display img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+}
+
+/* Text and price block */
+.namePrice {
+  text-align: center;
+}
+
+.namePrice h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.namePrice a {
+  color: #003366;
+  text-decoration: none;
+}
+
+.namePrice a:hover {
+  color: #00509e;
+  text-decoration: underline;
+}
+
+.namePrice span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #006400;
+}
+
+/* Message Paragraph after massages have been allowed */
+.notice {
+  font-size: 1.1rem;
+  color: #cc0000;
+  background-color: #fff4f4;
+  padding: 1rem;
+  border: 1px solid #cc0000;
+  border-radius: 6px;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* =======================
+   Error View Styling
+   ======================= */
+.error-container {
+  text-align: center;
+  padding: 3rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+}
+
+.error-container h1 {
+  font-size: 2.5rem;
+  color: #cc0000;
+  margin-bottom: 1rem;
+}
+
+.error-container .message {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+.error-container .home-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #cc0000;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.error-container .home-link:hover {
+  background-color: #a80000;
+  transition: background-color 0.3s ease;
+}
