@@ -31,12 +31,16 @@ invCont.buildByInventoryId = async function (req, res, next) {
     return next(error)
   }
 
+  // Format price and miles for display
+  itemData.inv_price = Number(itemData.inv_price)
+  itemData.inv_miles = Number(itemData.inv_miles)
+
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("inventory/detail", {
     title: itemName,
     nav,
     item: itemData,
   })
-};
+}
 
 module.exports = invCont;

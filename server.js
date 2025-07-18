@@ -48,15 +48,22 @@ app.use("/inv", invRoute);
 // skip the favicon error
 app.get('/favicon.ico', (req, res) => res.status(204));
 
+app.get("/trigger-error", (req, res, next) => {
+  // Intentionally throw an error to trigger the error middleware
+  const error = new Error("Oh no! There was a crash. Maybe try a different route?");
+  error.status = 500;
+  throw error;
+});
+
 /* ***********************
  * 404 Handler - catch invalid routes
  *************************/
-app.use(async (req, res, next) => {
+app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
-  const message = "Page not found";
-  res.status(404).render("errors/error", {
-    message,
-    nav
+  res.status(err.status || 500).render("errors/error", {
+    title: "Server Error",
+    message: err.message,
+    nav,
   });
 });
 

@@ -228,28 +228,6 @@ footer {
   color: #666;
 }
 
-/* Responsive Styles */
-@media screen and (min-width: 768px) {
-  .hero {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-
-  .hero-image {
-    max-width: 400px;
-  }
-
-  .upgrades-reviews {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .upgrades, .reviews {
-    width: 48%;
-  }
-}
-
 /* ================================
    Inventory Classification View
    ================================ */
@@ -425,4 +403,77 @@ footer {
   margin-top: 2rem;
 }
 
+/* Responsive Styles */
+@media screen and (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
 
+  .hero-image {
+    max-width: 400px;
+  }
+
+  .upgrades-reviews {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .upgrades, .reviews {
+    width: 48%;
+  }
+}
+
+/* Smaller screens*/
+@media screen and (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  #tools {
+    align-self: flex-end;
+  }
+
+  .vehicle-detail-container {
+    padding: 0.5rem;
+  }
+
+  .vehicle-detail-container li {
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tweak Upgrade List Grid for Small Screens*/
+@media screen and (max-width: 500px) {
+  .upgrade-list {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    font-size: 0.95rem;
+  }
+
+  header h1,
+  .siteName a {
+    font-size: 1.2rem;
+  }
+
+  .cta-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
