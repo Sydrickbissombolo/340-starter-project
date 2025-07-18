@@ -22,6 +22,12 @@ const e = require("express");
 app.use(express.static("public"));
 
 /* ***********************
+ * Middleware for parsing
+ *************************/
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs");
@@ -39,20 +45,33 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory Routes
 app.use("/inv", invRoute);
 
+// skip the favicon error
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 /* ***********************
- * Express Error Handling
+ * 404 Handler - catch invalid routes
+ *************************/
+app.use(async (req, res, next) => {
+  let nav = await utilities.getNav();
+  const message = "Page not found";
+  res.status(404).render("errors/error", {
+    message,
+    nav
+  });
+});
+
+/* ***********************
+ * Global Error Handler
  *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  let message;
-  if (err.status == 404) {
-    message = err.message;
-  } else {
-    message = "Oh no! There was a crash. Maybe try a different route?";
-  }
-  res.render("errors/error", {
+  let nav = await utilities.getNav();
+  console.error(`❌ Server Error at "${req.originalUrl}":`, err.stack);
+  
+  const message = err.status === 404 
+    ? err.message 
+    : "Oh no! Something went wrong on the server.";
+
+  res.status(err.status || 500).render("errors/error", {
     message,
     nav
   });
@@ -61,12 +80,12 @@ app.use(async (err, req, res, next) => {
 /* ***********************
  * Local Server Information
  *************************/
-const port = process.env.PORT 
-const host = process.env.HOST
+const port = process.env.PORT;
+const host = process.env.HOST;
 
 /* ***********************
  * Start Server
  *************************/
 app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`);
+  console.log(`✅ App listening on ${host}:${port}`);
 });

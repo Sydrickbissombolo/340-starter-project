@@ -1,10 +1,6 @@
-<%- include('../partials/header.ejs') %>
 
 <main class="error-container">
-  <h1><%= title %></h1>
-  <p class="message"><%- message %></p>
+  <h1><%= typeof title !== 'undefined' ? title : 'Error' %></h1>
+  <p class="message"><%- typeof message !== 'undefined' ? message : 'Something went wrong.' %></p>
   <a href="/" class="home-link">Go to Homepage</a>
 </main>
-
-
-<%- include('../partials/footer.ejs') %>

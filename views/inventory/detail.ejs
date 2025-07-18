@@ -1,0 +1,17 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<% if (item) { %>
+  <section class="vehicle-detail-container">
+    <img src="<%= item.inv_image %>" alt="Image of <%= item.inv_make %> <%= item.inv_model %>">
+    <ul>
+      <li><strong>Price:</strong> $<%= item.inv_price.toLocaleString() %></li>
+      <li><strong>Description:</strong> <%= item.inv_description %></li>
+      <li><strong>Color:</strong> <%= item.inv_color %></li>
+      <li><strong>Miles:</strong> <%= item.inv_miles.toLocaleString() %></li>
+    </ul>
+  </section>
+<% } else { %>
+  <p>Vehicle not found.</p>
+<% } %>

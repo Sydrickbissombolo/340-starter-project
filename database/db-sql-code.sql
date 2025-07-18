@@ -2,7 +2,7 @@ CREATE TYPE public.account_type AS ENUM
     ('Client', 'Employee', 'Admin');
 
 ALTER TYPE public.account_type
-    OWNER TO my_db_l09t_user;
+    OWNER TO cse_motors_db_user;
 
 -- Table structure for table `classification`
 CREATE TABLE public.classification (
@@ -246,5 +246,5 @@ WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 -- Update file paths for images and thumbnails
 UPDATE inventory
-SET inv_image = REPLACE(inv_image, 'images', '/images/vehicles/'),
-    inv_thumbnail = REPLACE(inv_thumbnail, 'images', '/images/vehicles/');
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
