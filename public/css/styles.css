@@ -452,3 +452,106 @@ footer {
     font-size: 0.9rem;
   }
 }
+
+/* === login page === */
+#loginForm {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #003366;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+label, input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#account_email {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#account_password {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5em;
+  width: 100%;
+  background-color: #00509e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#register {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* .flash-message {
+  background-color: #e0f7fa;
+  color: #006064;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  border: 1px solid #004d40;
+} */
+
+/* === Register page === */
+#registerForm {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #003366;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+label, input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#account_firstname {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#account_lastname {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+label span {
+  color: red;
+}
+
+#passwordBtn {
+  margin-top: 1rem;
+  padding: 0.5em;
+  width: 100%;
+  background-color: #00509e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

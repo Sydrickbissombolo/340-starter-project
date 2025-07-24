@@ -1,0 +1,50 @@
+<main>
+    <h1><%= title %></h1>
+
+    <% if (typeof message !== 'undefined') { %>
+        <p class="message"><%= message %></p>
+    <% } %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <%  }) %>
+      </ul>
+    <% } %>
+
+    <form id="registerForm" action="/account/register" method="post">
+        <strong><label for="account_firstname">First Name <span>*</span></label></strong>
+        <strong><input type="text" id="account_firstname" name="account_firstname" required placeholder="John" value="<%= locals.account_firstname %>"></strong>
+
+        <strong><label for="account_lastname">Last Name <span>*</span></label></strong>
+        <strong><input type="text" id="account_lastname" name="account_lastname" required placeholder="Doe" value="<%= locals.account_lastname %>"></strong>
+
+        <strong><label for="account_email">Email address <span>*</span></label></strong>
+        <input type="email" id="account_email" name="account_email" required placeholder="example@company.com" value="<%= locals.account_email %>">
+
+        <label for="account_password">Password:</label> 
+        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+        <strong><input type="password" name="account_password" id="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></strong>
+        <strong><span id="passwordBtn">Show Password</span></strong>
+
+
+        <p class="note">* Required fields</p>
+
+
+        <strong><button type="submit">Register</button></strong>
+
+<script>
+    const passwordBtn = document.querySelector("#passwordBtn");
+    passwordBtn.addEventListener("click", function () {
+        const passwordInput = document.querySelector("#account_password");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordBtn.textContent = "Hide Password";
+        } else {
+            passwordInput.type = "password";
+            passwordBtn.textContent = "Show Password";
+        }
+    });
+</script>
+</main>
