@@ -540,11 +540,6 @@ label, input {
   border-radius: 5px;
 }
 
-
-label span {
-  color: red;
-}
-
 #passwordBtn {
   margin-top: 1rem;
   padding: 0.5em;
