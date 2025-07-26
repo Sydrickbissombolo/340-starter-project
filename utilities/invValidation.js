@@ -1,0 +1,90 @@
+const inventoryModel = require("../models/inventory-model");
+const { body, validationResult } = require('express-validator');
+const utilities = require(".");
+
+const validateClassification = [
+    body('classification_name')
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage('Classification name is required')
+];
+
+const validateInventory = [
+    body('inv_make')
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage('Make is required'),
+    body('inv_model')
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage('Model is required'),
+    body('inv_year')
+        .isInt({ min: 1886, max: new Date().getFullYear() })
+        .withMessage('Year must be a valid year'),
+    body('inv_price')
+        .isFloat({ min: 0 })
+        .withMessage('Price must be a positive number'),
+    body('inv_miles')
+        .isInt({ min: 0 })
+        .withMessage('Miles must be a non-negative integer'),
+    body('inv_color')
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage('Color is required'),
+    body('inv_description')
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage('Description is required'),
+    body('inv_image')
+        .trim()
+        .isURL()
+        .withMessage('Image URL must be a valid URL'),
+    body('inv_thumbnail')
+        .trim()
+        .isURL()
+        .withMessage('Thumbnail URL must be a valid URL'),
+    body('classification_id')
+        .isInt()
+        .withMessage('Classification ID must be a valid integer')
+];
+
+// Check Results
+const checkInvData = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const nav = await utilities.getNav();
+        const classifications = await inventoryModel.getClassifications();
+        res.render("inventory/add-inventory", {
+            title: "Add Inventory",
+            nav,
+            errors: errors.array(),
+            classificationSelect: classifications.rows,
+            ...req.body,
+        });
+        return;
+    }
+    next();
+};
+
+const checkClassData = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const nav = await utilities.getNav();
+        res.render("inventory/add-classification", {
+            title: "Add Classification",
+            nav,
+            errors: errors.array(),
+            classification_name: req.body.classification_name,
+        });
+        return;
+    }
+    next();
+}
+
+module.exports = {
+    validateClassification,
+    validateInventory,
+    checkInvData,
+    checkClassData
+};
+    

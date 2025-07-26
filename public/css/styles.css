@@ -555,3 +555,84 @@ label span {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.vehicle-management h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.vehicle-management ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.vehicle-management ul li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.vehicle-management ul li a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #e6f0ff;
+}
+
+.add-classification h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.add-classification form {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+}
+
+.add-classification label, .add-classification input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.add-classification input {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-inventory h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.add-inventory form {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+}
+
+.add-inventory label, .add-inventory input, .add-inventory select {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.add-inventory input, .add-inventory select {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

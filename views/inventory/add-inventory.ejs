@@ -1,0 +1,49 @@
+<main class="add-inventory">
+    <h1>Add Vehicle</h1>
+    <form action="/inv/add-inventory" method="post">
+        <label for="classification_id">Classification</label>
+        <select name="classification_id" id="classification_id" required>
+            <option value="" disabled selected>Select a classification</option>
+            <% classificationSelect.forEach(classification => { %>
+                <option value="<%= classification.classification_id %>" <%= locals.classification_id === classification.classification_id ? 'selected' : '' %>><%= classification.classification_name %></option>
+            <% }) %>
+        </select>
+
+        <label for="inv_make">Make</label>
+        <input type="text" id="inv_make" name="inv_make" required placeholder="e.g., Toyota" value="<%= locals.inv_make %>">
+
+        <label for="inv_model">Model</label>
+        <input type="text" id="inv_model" name="inv_model" required placeholder="e.g., Camry" value="<%= locals.inv_model %>">
+
+        <label for="inv_year">Year</label>
+        <input type="number" id="inv_year" name="inv_year" required placeholder="e.g., 2023" value="<%= locals.inv_year %>">
+
+        <label for="inv_description">Description</label>
+        <textarea id="inv_description" name="inv_description" required placeholder="Enter vehicle description here..."><%= locals.inv_description %></textarea>
+
+        <label for="inv_image">Image URL</label>
+        <input type="url" id="inv_image" name="inv_image" required placeholder="https://example.com/image.jpg" value="<%= locals.inv_image %>">
+
+        <label for="inv_thumbnail">Thumbnail URL</label>
+        <input type="url" id="inv_thumbnail" name="inv_thumbnail" required placeholder="https://example.com/thumbnail.jpg" value="<%= locals.inv_thumbnail %>">
+
+        <label for="inv_color">Color</label>
+        <input type="text" id="inv_color" name="inv_color" required placeholder ="e.g., Red" value="<%= locals.inv_color %>">
+
+        <label for="inv_miles">Miles</label>
+        <input type="number" id="inv_miles" name="inv_miles" required placeholder="e.g., 15000" value="<%= locals.inv_miles %>">
+
+        <label for="inv_price">Price</label>
+        <input type="number" id="inv_price" name="inv_price" required placeholder="e.g., 25000" value="<%= locals.inv_price %>">
+
+        <button type="submit">Add Vehicle</button>
+
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+            <ul class="notice">
+                <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </form>
+</main>
