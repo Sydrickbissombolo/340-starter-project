@@ -1,4 +1,4 @@
-<main class="add-inventory">
+<section class="add-inventory">
     <h1>Add Vehicle</h1>
     <form action="/inv/add-inventory" method="post">
         <label for="classification_id">Classification</label>
@@ -10,22 +10,33 @@
         </select>
 
         <label for="inv_make">Make</label>
-        <input type="text" id="inv_make" name="inv_make" required placeholder="e.g., Toyota" value="<%= locals.inv_make %>">
+        <input type="text" id="inv_make" name="inv_make"
+            required pattern="[A-Za-z\s]+" 
+            title="Only letters and spaces" 
+            placeholder="e.g., Toyota" 
+            value="<%= locals?.inv_make || '' %>">
 
         <label for="inv_model">Model</label>
         <input type="text" id="inv_model" name="inv_model" required placeholder="e.g., Camry" value="<%= locals.inv_model %>">
 
         <label for="inv_year">Year</label>
-        <input type="number" id="inv_year" name="inv_year" required placeholder="e.g., 2023" value="<%= locals.inv_year %>">
+        <input type="number" id="inv_year" name="inv_year"
+            required min="1900" max="2100" 
+            placeholder="e.g., 2023" 
+            value="<%= locals?.inv_year || '' %>">
 
         <label for="inv_description">Description</label>
         <textarea id="inv_description" name="inv_description" required placeholder="Enter vehicle description here..."><%= locals.inv_description %></textarea>
 
         <label for="inv_image">Image URL</label>
-        <input type="url" id="inv_image" name="inv_image" required placeholder="https://example.com/image.jpg" value="<%= locals.inv_image %>">
+        <input type="text" id="inv_image" name="inv_image"
+            placeholder="/images/no-image.png"
+            value="<%= locals?.inv_image || '' %>">
 
         <label for="inv_thumbnail">Thumbnail URL</label>
-        <input type="url" id="inv_thumbnail" name="inv_thumbnail" required placeholder="https://example.com/thumbnail.jpg" value="<%= locals.inv_thumbnail %>">
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail"
+            placeholder="/images/no-image.png"
+            value="<%= locals?.inv_thumbnail || '' %>">
 
         <label for="inv_color">Color</label>
         <input type="text" id="inv_color" name="inv_color" required placeholder ="e.g., Red" value="<%= locals.inv_color %>">
@@ -34,7 +45,10 @@
         <input type="number" id="inv_miles" name="inv_miles" required placeholder="e.g., 15000" value="<%= locals.inv_miles %>">
 
         <label for="inv_price">Price</label>
-        <input type="number" id="inv_price" name="inv_price" required placeholder="e.g., 25000" value="<%= locals.inv_price %>">
+        <input type="number" id="inv_price" name="inv_price"
+            required min="0" step="1" 
+            placeholder="e.g., 25000" 
+            value="<%= locals?.inv_price || '' %>">
 
         <button type="submit">Add Vehicle</button>
 
@@ -46,4 +60,4 @@
             </ul>
         <% } %>
     </form>
-</main>
+</section>

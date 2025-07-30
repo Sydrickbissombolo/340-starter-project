@@ -7,6 +7,8 @@ const validateClassification = [
         .trim()
         .isLength({ min: 1 })
         .withMessage('Classification name is required')
+        .matches(/^[a-zA-Z\s]+$/)
+        .withMessage('Classification name must contain only letters and spaces')
 ];
 
 const validateInventory = [
@@ -37,12 +39,14 @@ const validateInventory = [
         .withMessage('Description is required'),
     body('inv_image')
         .trim()
-        .isURL()
-        .withMessage('Image URL must be a valid URL'),
+        .optional({ checkFalsy: true })
+        .isString()
+        .withMessage('Image URL must be a valid string'),
     body('inv_thumbnail')
         .trim()
-        .isURL()
-        .withMessage('Thumbnail URL must be a valid URL'),
+        .optional({ checkFalsy: true })
+        .isString()
+        .withMessage('Thumbnail URL must be a valid string'),
     body('classification_id')
         .isInt()
         .withMessage('Classification ID must be a valid integer')

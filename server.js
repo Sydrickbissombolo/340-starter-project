@@ -18,6 +18,7 @@ const invRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities/");
 const accountRoute = require("./routes/accountRoute");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 /* ***********************
  * Middleware to serve static files
@@ -31,6 +32,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(utilities.checkJWTToken);
 
 /* ***********************
  * Session Middleware
@@ -54,6 +57,8 @@ app.use(session({
    res.locals.messages = require('express-messages')(req, res);
     next();
   });
+
+  app.use(cookieParser());
 
 /* ***********************
  * View Engine and Templates

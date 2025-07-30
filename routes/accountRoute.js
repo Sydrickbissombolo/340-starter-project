@@ -1,37 +1,57 @@
 const express = require("express");
 const router = express.Router();
-const regValidate = require("../utilities/accountValidation");
+
+// Middleware and utility functions
 const utilities = require("../utilities");
+const regValidate = require("../utilities/accountValidation");
+
+// Controllers
 const accountController = require("../controllers/accountController");
 
-/* Route to build the login view */
-router.get("/login", utilities.handleErrors(accountController.buildLogin));
+/* =============================
+   GET Routes
+============================= */
 
-/* Route to build the register view */
-router.get("/register", utilities.handleErrors(accountController.buildRegister));
-
-/* Route to handle registration submission */
-router.post(
-    "/register",
-    regValidate.registrationRules(),
-    regValidate.checkRegData,
-    utilities.handleErrors(accountController.registerAccount)
+// Show login page
+router.get(
+  "/login",
+  utilities.handleErrors(accountController.buildLogin)
 );
 
-// Process the login attempt
-router.post(
-    "/login",
-    regValidate.loginRules(),
-    regValidate.checkLoginData,
-    utilities.handleErrors(accountController.loginAccount)
+// Show registration page
+router.get(
+  "/register",
+  utilities.handleErrors(accountController.buildRegister)
 );
 
-// Process the login attempt
+// Show account dashboard (requires JWT authentication)
+router.get(
+  "/",
+  utilities.checkJWTToken,
+  utilities.handleErrors(accountController.buildAccount)
+);
+
+/* =============================
+   POST Routes
+============================= */
+
+// Handle registration form submission
+router.post(
+  "/register",
+  regValidate.registrationRules(),
+  regValidate.checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
+);
+
+// Handle login form submission
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
-)
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
 
+/* =============================
+   Export the Router
+============================= */
 module.exports = router;
