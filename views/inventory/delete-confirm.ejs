@@ -1,0 +1,60 @@
+<section class="delete-inventory">
+    <h1>Delete Vehicle</h1>
+<!-- <% if (notice) { %>
+  <div class="notice"><%= notice %></div>
+<% } %> -->
+
+    <form action="/inv/delete" method="post">
+        <label for="classification_id">Classification</label>
+
+        <label for="inv_make">Make</label>
+        <input type="text" id="inv_make" name="inv_make" readonly
+            required pattern="[A-Za-z\s]+" 
+            title="Only letters and spaces" 
+            placeholder="e.g., Toyota" 
+            value="<%= locals?.inv_make || '' %>">
+
+        <label for="inv_model">Model</label>
+        <input type="text" id="inv_model" name="inv_model" readonly placeholder="e.g., Camry" value="<%= locals.inv_model %>">
+
+        <label for="inv_year">Year</label>
+        <input type="number" id="inv_year" name="inv_year" readonly
+            required min="1900" max="2100" 
+            placeholder="e.g., 2023" 
+            value="<%= locals?.inv_year || '' %>">
+
+        <label for="inv_description">Description</label>
+        <textarea id="inv_description" name="inv_description" readonly required placeholder="Enter vehicle description here..."><%= locals.inv_description %></textarea>
+
+        <label for="inv_image">Image URL</label>
+        <input type="text" id="inv_image" name="inv_image" readonly
+            placeholder="/images/no-image.png"
+            value="<%= locals?.inv_image || '' %>">
+
+        <label for="inv_thumbnail">Thumbnail URL</label>
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail" readonly
+            placeholder="/images/no-image.png"
+            value="<%= locals?.inv_thumbnail || '' %>">
+
+        <label for="inv_color">Color</label>
+        <input type="text" id="inv_color" name="inv_color" readonly placeholder ="e.g., Red" value="<%= locals.inv_color %>">
+
+        <label for="inv_miles">Miles</label>
+        <input type="number" id="inv_miles" name="inv_miles" readonly required placeholder="e.g., 15000" value="<%= locals.inv_miles %>">
+
+        <label for="inv_price">Price</label>
+        <input type="number" id="inv_price" name="inv_price"
+            readonly
+            required min="0" step="1" 
+            placeholder="e.g., 25000" 
+            value="<%= locals?.inv_price || '' %>">
+
+        <button type="submit" value="delete">Delete Vehicle</button>
+        <p>Confirm Deletion - The delete is permanent.</p>
+
+        <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
+    </form>
+</section>
+
+<script src="/js/inv-delete.js"></script>

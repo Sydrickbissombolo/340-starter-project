@@ -64,11 +64,11 @@ function buildDetailView(vehicle) {
 
 async function buildClassificationList(selected = null) {
   let data = await invModel.getClassifications();
-  let list = '<select name="classification_id" required>';
+  let list = '<select id="classificationList" name="classification_id" required>';
   list += `<option value="">Choose a Classification</option>`;
   data.rows.forEach((row) => {
     list += `<option value="${row.classification_id}"`;
-    if (selected == row.classification_id) {
+    if (selected === row.classification_id) {
       list += " selected";
     }
     list += `>${row.classification_name}</option>`;
@@ -76,6 +76,7 @@ async function buildClassificationList(selected = null) {
   list += "</select>";
   return list;
 }
+
 
 /* ****************************************
 * Middleware to check token validity
@@ -101,6 +102,42 @@ function checkJWTToken(req, res, next) {
   }
 }
 
+/* ****************************************
+* Check login
+**************************************** */
+function checkLogin(req, res, next) {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    res.locals.loggedin = false;
+    return next();
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      res.locals.loggedin = false;
+      return next();
+    }
+
+    res.locals.loggedin = true;
+    res.locals.firstname = decoded.account_firstname;
+    res.locals.account = decoded;
+
+    return next();
+  });
+}
+
+const checkAdmin = (req, res, next) => {
+  const accountType = res.locals.account_type;
+  if (accountType === "Employee" || accountType === "Admin") {
+    return next();
+  }
+  return res.status(403).render("account/login", {
+    title: "Login",
+    message: "Access denied. Admin or Employee only.",
+  });
+};
+
 module.exports = {
   getNav,
   buildClassificationGrid,
@@ -108,4 +145,6 @@ module.exports = {
   handleErrors,
   buildClassificationList,
   checkJWTToken,
+  checkLogin,
+  checkAdmin
 }

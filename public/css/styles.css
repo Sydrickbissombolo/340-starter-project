@@ -55,7 +55,16 @@ header h1 {
   color: #ffcc00;
 }
 
-#tools a {
+#top-header ul {
+  text-decoration: none;
+  list-style-type: none;
+}
+#top-header ul li{
+display: inline-block;
+  margin: 0 1rem;
+}
+
+#top-header li a {
   font-size: 1rem;
   color: white;
   text-decoration: none;
@@ -65,7 +74,7 @@ header h1 {
   border-radius: 5px;
 }
 
-#tools a:hover {
+#top-header a:hover {
   background-color: white;
   color: #003366;
   transition: all 0.3s ease;
@@ -279,6 +288,7 @@ footer {
   border-radius: 6px;
   margin-top: 2rem;
   text-align: center;
+  list-style-type: none;
 }
 
 /* === Error View Styling === */
@@ -548,6 +558,27 @@ label, input {
   color: #2c3e50;
 }
 
+.vehicle-management h2 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+#classificationList {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.leading-message {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
 .vehicle-management ul {
   list-style: none;
   padding: 0;
@@ -617,6 +648,82 @@ label, input {
 }
 
 .add-inventory input, .add-inventory select {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.account-management h1, h2 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.account-management ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.account-management ul li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.account-management ul li a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #e6f0ff;
+}
+
+/* Manage Inventory Styles */
+.delete-inventory h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.delete-inventory form {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+}
+
+.delete-inventory label, .delete-inventory input {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.update-inventory h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.update-inventory form {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+}
+
+.update-inventory label, .update-inventory input, .update-inventory select {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.update-inventory input, .update-inventory select {
   padding: 0.5em;
   border: 1px solid #ccc;
   border-radius: 5px;

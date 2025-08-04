@@ -35,6 +35,9 @@ importers:
       express-ejs-layouts:
         specifier: ^2.5.1
         version: 2.5.1
+      express-flash:
+        specifier: ^0.0.2
+        version: 0.0.2
       express-messages:
         specifier: ^1.0.1
         version: 1.0.1
@@ -244,6 +247,10 @@ packages:
 
   express-ejs-layouts@2.5.1:
     resolution: {integrity: sha512-IXROv9n3xKga7FowT06n1Qn927JR8ZWDn5Dc9CJQoiiaaDqbhW5PDmWShzbpAa2wjWT1vJqaIM1S6vJwwX11gA==}
+
+  express-flash@0.0.2:
+    resolution: {integrity: sha512-QVUR0ZZRCaa8+iPHoUQaQJrQWcQuK/Q+19M7IUIdIEtvwhrA/ifHT7y1CVJI41YfGiOQnbGtn3uvd2vOdgu58A==}
+    engines: {node: '>= 0.8.0'}
 
   express-messages@1.0.1:
     resolution: {integrity: sha512-twwOvH1K0W7pPO/bz/Lq85GULnnZPQSPX3eLr7VRJyhQW9a+2vj9QI28r/AQhMu6bnNZkpxB/QflsDQi3hI7lQ==}
@@ -861,6 +868,10 @@ snapshots:
   etag@1.8.1: {}
 
   express-ejs-layouts@2.5.1: {}
+
+  express-flash@0.0.2:
+    dependencies:
+      connect-flash: 0.1.1
 
   express-messages@1.0.1: {}
 

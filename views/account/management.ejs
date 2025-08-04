@@ -1,1 +1,25 @@
-<h1>You're logged in</h1>
+<section class="account-management"> 
+  <h1>Account Management</h1>
+
+  <!-- <% if (notice) { %>
+  <div class="notice"><%= notice %></div>
+<% } %> -->
+
+  <h2>Welcome back, <%= account.account_firstname %>!</h2>
+
+  <ul>
+    <li><a href="/account/update-account/<%= account.account_id %>">Edit Account Information</a></li>
+
+    <% if (account.account_type === "Employee" || account.account_type === "Admin") { %>
+        <h2>Manage Inventory</h2>
+        <li><a href="/inv">Manage Inventory</a></li>
+    <% } %>
+
+    <% if (account.account_type === "Admin") { %>
+      <li><a href="/admin">Admin Dashboard</a></li>
+    <% } %>
+  </ul>
+
+  <h2>You're logged in</h2>
+</section>
+<script src="/js/inventory.js"></script>

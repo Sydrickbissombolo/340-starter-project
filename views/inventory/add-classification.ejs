@@ -1,5 +1,11 @@
 <section class="add-classification">
     <h1>Add Classification</h1>
+
+
+<!-- <% if (notice) { %>
+  <div class="notice"><%= notice %></div>
+<% } %> -->
+
     <form action="/inv/add-classification" method="post">
         <label for="classification_name">Classification Name <span>*</span></label>
         <input type="text" id="classification_name" name="classification_name" 
@@ -7,14 +13,6 @@
             title="Only letters and spaces are allowed"
             placeholder="e.g., SUV, Sedan" 
             value="<%= locals?.classification_name || '' %>">
-
-        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
-            <ul class="notice">
-                <% errors.forEach(error => { %>
-                    <li><%= error.msg %></li>
-                <% }) %>
-            </ul>
-        <% } %>
 
         <p class="note">* Required fields</p>
 

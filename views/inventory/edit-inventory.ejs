@@ -1,20 +1,12 @@
-<section class="add-inventory">
-    <h1>Add Vehicle</h1>
+<section class="update-inventory">
+    <h1>Edit Vehicle</h1>
 <!-- <% if (notice) { %>
   <div class="notice"><%= notice %></div>
 <% } %> -->
 
-    <form action="/inv/add-inventory" method="post">
+    <form action="/inv/update" method="post" id="updateForm">
         <label for="classification_id">Classification</label>
-        <select name="classification_name" id="classification_id">
-            <option value="">Select Classification</option>
-            <% classificationSelect.forEach(classification => { %>
-                <option value="<%= classification.classification_id %>" 
-                    <%= locals?.classification_id === classification.classification_id ? 'selected' : '' %>>
-                    <%= classification.classification_name %>
-                </option>
-            <% }) %>
-        </select>
+        <%- classificationSelect %>
 
         <label for="inv_make">Make</label>
         <input type="text" id="inv_make" name="inv_make"
@@ -57,7 +49,11 @@
             placeholder="e.g., 25000" 
             value="<%= locals?.inv_price || '' %>">
 
-        <button type="submit">Add Vehicle</button>
+        <button type="submit" disabled>Update Vehicle</button>
 
+        <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
     </form>
 </section>
+
+<script src="/js/inv-update.js"></script>
