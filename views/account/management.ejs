@@ -10,7 +10,7 @@
   <ul>
     <li><a href="/account/update-account/<%= account.account_id %>">Edit Account Information</a></li>
 
-    <% if (account.account_type === "Employee" || account.account_type === "Admin") { %>
+    <% if (account && (account.account_type === "Employee" || account.account_type === "Admin")) { %>
         <h2>Manage Inventory</h2>
         <li><a href="/inv">Manage Inventory</a></li>
     <% } %>

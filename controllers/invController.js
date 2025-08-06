@@ -64,9 +64,18 @@ invCont.buildByInventoryId = async function (req, res, next) {
  * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   try {
-    let nav = await utilities.getNav();
+    const account = res.locals.account;
+
+    // Checking if the user is an Admin or Employee
+    if (!account || (account.account_type !== "Admin" && account.account_type !== "Employee")) {
+      req.flash("notice", "Access denied: You do not have permission to view the vehicle management page.");
+      return res.status(403).redirect("/");
+    }
+
+    const nav = await utilities.getNav();
     const classificationSelect = await utilities.buildClassificationList();
     const classifications = await invModel.getClassifications();
+
     res.render("inventory/management", {
       title: "Vehicle Management",
       classificationSelect,
@@ -74,6 +83,7 @@ invCont.buildManagement = async function (req, res, next) {
       nav,
       error: [],
       flash: req.flash("notice"),
+      account,
     });
   } catch (err) {
     next(err);

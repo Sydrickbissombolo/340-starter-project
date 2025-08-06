@@ -1,9 +1,11 @@
 <section class="vehicle-management">
-  <h1>Vehicle Management</h1>
+  
+  <% if (flash && flash.length > 0) { %>
+    <div class="notice"><%= flash[0] %></div>
+  <% } %>
 
-  <!-- <% if (notice) { %>
-  <div class="notice"><%= notice %></div>
-<% } %> -->
+<% if (account && (account.account_type === "Employee" || account.account_type === "Admin")) { %>
+  <h1>Vehicle Management</h1>
 
   <ul>
     <li><a href="/inv/add-classification">Add New Classification</a></li>
@@ -21,6 +23,7 @@
   <table id="inventoryDisplay"></table>
 
   <noscript>JavaScript must be enabled to use this page.</noscript>
+<% } %>
 
 </section>
 <!-- Inventory JavaScript -->
