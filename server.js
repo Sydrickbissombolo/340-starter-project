@@ -3,9 +3,6 @@
  * application. It is used to control the project.
  *******************************************/
 
-/* ***********************
- * Require Statements
- *************************/
 const express = require("express");
 const session = require("express-session");
 const expressLayouts = require("express-ejs-layouts");
@@ -19,6 +16,7 @@ const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
 const invRoute = require("./routes/inventoryRoute");
 const accountRoute = require("./routes/accountRoute");
+const contactRoute = require("./routes/contactRoute");
 const utilities = require("./utilities/");
 
 const app = express();
@@ -38,14 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 /* ***********************
- * JWT Token Middleware
- *************************/
-app.use(utilities.checkJWTToken);
-
-app.use(utilities.checkLogin);
-
-/* ***********************
- * Session Middleware
+ * Session Middleware (must come BEFORE flash & routes)
  *************************/
 app.use(session({
   store: new pgSession({
@@ -59,17 +50,6 @@ app.use(session({
   cookie: { secure: false },
 }));
 
-
-
-app.use(async (req, res, next) => {
-  try {
-    res.locals.nav = await utilities.getNav();
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
-
 /* ***********************
  * Flash Messages Middleware
  *************************/
@@ -81,12 +61,28 @@ app.use((req, res, next) => {
 });
 
 /* ***********************
+ * JWT Token Middleware
+ *************************/
+app.use(utilities.checkJWTToken);
+
+/* ***********************
+ * Navigation for all views
+ *************************/
+app.use(async (req, res, next) => {
+  try {
+    res.locals.nav = await utilities.getNav();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
+/* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("layout", "./layouts/layout");
-
 
 /* ***********************
  * Routes
@@ -95,6 +91,7 @@ app.use(static);
 app.get("/", utilities.handleErrors(baseController.buildHome));
 app.use("/inv", invRoute);
 app.use("/account", accountRoute);
+app.use("/contact", contactRoute);
 app.get("/favicon.ico", (req, res) => res.status(204));
 
 /* ***********************
@@ -128,7 +125,6 @@ app.use(async (err, req, res, next) => {
     nav,
   });
 });
-
 
 /* ***********************
  * Local Server Information

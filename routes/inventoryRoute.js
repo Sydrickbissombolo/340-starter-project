@@ -6,13 +6,13 @@ const utilities = require("../utilities");
 const { checkAdmin } = require("../utilities")
 
 // Route to build inventory by classification
-router.get("/type/:classificationId", utilities.checkLogin, checkAdmin, utilities.handleErrors(invController.buildByClassificationId));
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
 // JSON inventory fetch (for JS dynamic table)
 router.get("/getInventory/:classification_id", utilities.checkLogin, checkAdmin, utilities.handleErrors(invController.getInventoryJSON));
 
 // Detail view by inventory ID
-router.get("/detail/:inv_id", utilities.checkLogin, checkAdmin, utilities.handleErrors(invController.buildByInventoryId));
+router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInventoryId));
 
 // Management main page
 router.get("/management", utilities.checkLogin, checkAdmin, utilities.handleErrors(invController.buildManagement));

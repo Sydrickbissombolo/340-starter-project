@@ -1,9 +1,9 @@
 <section class="account-management"> 
   <h1>Account Management</h1>
 
-  <!-- <% if (notice) { %>
+<% if (notice && String(notice).trim().length > 0) { %>
   <div class="notice"><%= notice %></div>
-<% } %> -->
+<% } %>
 
   <h2>Welcome back, <%= account.account_firstname %>!</h2>
 

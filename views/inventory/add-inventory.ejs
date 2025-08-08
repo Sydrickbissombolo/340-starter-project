@@ -1,12 +1,23 @@
 <section class="add-inventory">
     <h1>Add Vehicle</h1>
-<!-- <% if (notice) { %>
+
+<% if (notice && String(notice).trim().length > 0) { %>
   <div class="notice"><%= notice %></div>
-<% } %> -->
+<% } %>
+
+<% if (errors && errors.length > 0) { %>
+    <div class="error-container">
+      <ul>
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
 
     <form action="/inv/add-inventory" method="post">
         <label for="classification_id">Classification</label>
-        <select name="classification_name" id="classification_id">
+        <select name="classification_id" id="classification_id">
             <option value="">Select Classification</option>
             <% classificationSelect.forEach(classification => { %>
                 <option value="<%= classification.classification_id %>" 

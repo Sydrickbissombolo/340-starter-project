@@ -1,8 +1,19 @@
 <section class="update-inventory">
     <h1>Edit Vehicle</h1>
-<!-- <% if (notice) { %>
+
+<% if (notice && String(notice).trim().length > 0) { %>
   <div class="notice"><%= notice %></div>
-<% } %> -->
+<% } %>
+
+<% if (errors && errors.length > 0) { %>
+    <div class="error-container">
+      <ul>
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
 
     <form action="/inv/update" method="post" id="updateForm">
         <label for="classification_id">Classification</label>

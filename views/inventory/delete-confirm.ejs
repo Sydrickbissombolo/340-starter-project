@@ -1,8 +1,19 @@
 <section class="delete-inventory">
     <h1>Delete Vehicle</h1>
-<!-- <% if (notice) { %>
+
+<% if (notice && String(notice).trim().length > 0) { %>
   <div class="notice"><%= notice %></div>
-<% } %> -->
+<% } %>
+
+<% if (errors && errors.length > 0) { %>
+    <div class="error-container">
+      <ul>
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
 
     <form action="/inv/delete" method="post">
         <label for="classification_id">Classification</label>

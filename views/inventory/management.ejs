@@ -1,8 +1,8 @@
 <section class="vehicle-management">
   
-  <% if (flash && flash.length > 0) { %>
-    <div class="notice"><%= flash[0] %></div>
-  <% } %>
+<% if (notice && String(notice).trim().length > 0) { %>
+  <div class="notice"><%= notice %></div>
+<% } %>
 
 <% if (account && (account.account_type === "Employee" || account.account_type === "Admin")) { %>
   <h1>Vehicle Management</h1>

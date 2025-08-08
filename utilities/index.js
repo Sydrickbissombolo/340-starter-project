@@ -18,6 +18,7 @@ async function getNav() {
   const data = await invModel.getClassifications();
   let list = "<ul>";
   list += '<li><a href="/" title="Home page">Home</a></li>';
+  list += '<li><a href="/contact" title="View Contact Messages">Contact Us</a></li>';
   data.rows.forEach((row) => {
     list += `<li><a href="/inv/type/${row.classification_id}" title="See our inventory of ${row.classification_name} vehicles">${row.classification_name}</a></li>`;
   });
@@ -91,13 +92,16 @@ async function buildClassificationList(selected = null) {
 **************************************** */
 function checkJWTToken(req, res, next) {
   const token = req.cookies?.jwt;
-  if (!token) return next();
+  if (!token) {
+    res.locals.loggedin = false;
+    return next();
+  }
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
     if (err) {
-      req.flash("notice", "Please log in");
       res.clearCookie("jwt");
-      return res.redirect("/account/login");
+      res.locals.loggedin = false;
+      return next(); // <-- don't redirect here globally
     }
 
     res.locals.account = accountData;
@@ -114,15 +118,16 @@ function checkJWTToken(req, res, next) {
 **************************************** */
 function checkLogin(req, res, next) {
   const token = req.cookies?.jwt;
+
   if (!token) {
-    res.locals.loggedin = false;
-    return next();
+    req.flash("notice", "Please log in to continue.");
+    return res.redirect("/account/login");
   }
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
-      res.locals.loggedin = false;
-      return next();
+      req.flash("notice", "Please log in to continue.");
+      return res.redirect("/account/login");
     }
 
     res.locals.loggedin = true;
@@ -130,7 +135,7 @@ function checkLogin(req, res, next) {
     res.locals.account_type = decoded.account_type;
     res.locals.account = decoded;
 
-    return next();
+    next();
   });
 }
 

@@ -1,0 +1,14 @@
+<h1>User Messages</h1>
+<% if (messages.length === 0) { %>
+  <p>No messages received.</p>
+<% } else { %>
+  <ul>
+    <% messages.forEach(msg => { %>
+      <li>
+        <strong><%= msg.account_email %></strong> | <%= msg.subject %><br>
+        <em><%= msg.created_at.toLocaleString() %></em><br>
+        <p><%= msg.message %></p>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

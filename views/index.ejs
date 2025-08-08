@@ -1,5 +1,8 @@
 
             <h1>Welcome to CSE Motors!</h1>
+           <% if (notice && String(notice).trim().length > 0) { %>
+                <div class="notice"><%= notice %></div>
+           <% } %>
             <section class="hero">
                 <div id="hero-text">
                     <h2>DMC Dolorean</h2>
